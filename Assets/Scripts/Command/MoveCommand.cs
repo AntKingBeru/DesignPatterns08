@@ -6,7 +6,7 @@ public class MoveCommand : ICommand
     private Vector3 _direction;
     private float _distance;
 
-    public MoveCommand(Transform target, Vector3 direction, float distance)
+    public MoveCommand(Transform target, Vector2 direction, float distance)
     {
         _target = target;
         _direction = direction;
