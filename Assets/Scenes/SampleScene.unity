@@ -440,6 +440,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1964774300}
+  - component: {fileID: 1964774302}
   - component: {fileID: 1964774301}
   m_Layer: 0
   m_Name: Player
@@ -477,10 +478,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InputHandler
   player: {fileID: 1964774300}
+  invoker: {fileID: 1964774302}
   move: {fileID: -1680190386980627800, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   jump: {fileID: -2099379676528639254, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   undo: {fileID: -593331225690913929, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   redo: {fileID: -7214144617680969895, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+--- !u!114 &1964774302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1964774299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e29135a903672854496ec683820057f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CommandInvoker
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

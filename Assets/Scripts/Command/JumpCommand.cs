@@ -3,10 +3,10 @@ using System.Collections;
 
 public class JumpCommand : ICommand
 {
-    private MonoBehaviour _runner;
-    private Transform _target;
-    private float _jumpScaleMultiplier;
-    private float _duration;
+    private readonly MonoBehaviour _runner;
+    private readonly Transform _target;
+    private readonly float _jumpScaleMultiplier;
+    private readonly float _duration;
 
     public JumpCommand(MonoBehaviour runner, Transform target, float jumpScaleMultiplier, float duration)
     {
@@ -19,12 +19,13 @@ public class JumpCommand : ICommand
     public void Execute()
     {
         _runner.StartCoroutine(JumpRoutine());
+        Debug.Log($"Execute JumpCommand {_target.position}");
     }
 
     private IEnumerator JumpRoutine()
     {
-        Vector3 originalScale = _target.localScale;
-        Vector3 jumpScale = originalScale * _jumpScaleMultiplier;
+        var originalScale = _target.localScale;
+        var jumpScale = originalScale * _jumpScaleMultiplier;
 
         _target.localScale = jumpScale;
 
@@ -35,5 +36,6 @@ public class JumpCommand : ICommand
 
     public void Undo()
     {
+        Debug.Log($"Undoing MoveCommand {_target.position}");
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class InputHandler : MonoBehaviour
 {
     [SerializeField] private Transform player;
-    // [SerializeField] private CommandInvoker invoker;
+    [SerializeField] private CommandInvoker invoker;
     
     [Header("Input")]
     [SerializeField] private InputActionReference move;
@@ -36,10 +36,10 @@ public class InputHandler : MonoBehaviour
 
     private void Start()
     {
-        _forwardCommand = new MoveCommand(player, Vector2.up, 1f);
-        _backCommand = new MoveCommand(player, Vector2.down, 1f);
-        _leftCommand = new MoveCommand(player, Vector2.left, 1f);
-        _rightCommand = new MoveCommand(player, Vector2.right, 1f);
+        _forwardCommand = new MoveCommand(player, Vector2.up, 0.1f);
+        _backCommand = new MoveCommand(player, Vector2.down, 0.1f);
+        _leftCommand = new MoveCommand(player, Vector2.left, 0.1f);
+        _rightCommand = new MoveCommand(player, Vector2.right, 0.1f);
         _jumpCommand = new JumpCommand(this, player, 2f, 0.5f);
     }
 
@@ -47,31 +47,34 @@ public class InputHandler : MonoBehaviour
     {
         var moveX = move.action.ReadValue<Vector2>().x;
         var moveY = move.action.ReadValue<Vector2>().y;
+        
         switch (moveX)
         {
             case > 0:
-                // invoker.ExecuteCommand(_rightCommand);
+                invoker.ExecuteCommand(_rightCommand);
                 break;
             case < 0:
-                // invoker.ExecuteCommand(_leftCommand);
+                invoker.ExecuteCommand(_leftCommand);
                 break;
         }
 
         switch (moveY)
         {
             case > 0:
-                // invoker.ExecuteCommand(_forwardCommand);
+                invoker.ExecuteCommand(_forwardCommand);
                 break;
             case < 0:
-                // invoker.ExecuteCommand(_backCommand);
+                invoker.ExecuteCommand(_backCommand);
                 break;
         }
-        // if (jump.action.triggered)
-        //     invoker.ExecuteCommand(_jumpCommand);
         
-        // if (undo.action.triggered)
-        //     invoker.UndoLastCommand();
-        // if (redo.action.triggered)
-        //     invoker.RedoLastUndo();
+        if (jump.action.triggered)
+            invoker.ExecuteCommand(_jumpCommand);
+        
+        if (undo.action.triggered)
+            invoker.UndoLastCommand();
+        
+        if (redo.action.triggered)
+            invoker.RedoLastUndo();
     }
 }
