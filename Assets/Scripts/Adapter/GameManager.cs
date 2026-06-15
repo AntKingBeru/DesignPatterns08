@@ -13,6 +13,13 @@ namespace Patterns.Structural.Adapter
 
         private void Awake()
         {
+            if (Instance && Instance != this)
+            {
+                Destroy(gameObject);
+                return;
+            }
+            Instance = this;
+            
             _logger = new LoggerAdapter();
         }
 
