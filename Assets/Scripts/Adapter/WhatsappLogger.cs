@@ -4,9 +4,13 @@ namespace Patterns.Structural.Adapter
 {
     public class WhatsappLogger
     {
+        // ? text = 
+        private const string WHATS_APP_LINK = "https://wa.me/";
+        private const string MY_NUMBER = "972546969208";
+        
         public void WriteLine(string text, int level)
         {
-            // TODO: Mikhail - add log to WhatsApp here - to number 972546969208
+            Application.OpenURL($"{WHATS_APP_LINK}{MY_NUMBER}?text={text}");
         }
     }
 }
