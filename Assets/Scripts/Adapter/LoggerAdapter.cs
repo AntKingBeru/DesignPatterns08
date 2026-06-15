@@ -1,5 +1,3 @@
-using System;
-
 namespace Patterns.Structural.Adapter
 {
     public class LoggerAdapter : ILogger
